@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维转一维数组</title>
+</head>
+
+<body>
+    <script>
+        let TwoDimArray = [[1, 2], [3, 4], [5, 6]];
+
+        // method-0: ES10 flat(), 括号内指定数组深度，默认为1，如果层数未知可以传入: Infinity
+        let a1 = TwoDimArray.flat();
+        console.log(a1);
+
+        // method-1: ES5 reduce(callback[, initialValue]), 方法接收一个函数作为累加器, reduce 为数组中的每一个元素依次执行回调函数
+        // concat(), 合并两个或多个的数组，返回新数组不改变现有数组
+        let a2 = TwoDimArray.reduce(function (previousValue, currentValue) { return previousValue.concat(currentValue) })
+        console.log(a2);
+
+        // method-3: ES6 拓展运算符(...)
+        let a3 = [].concat(...TwoDimArray)
+        console.log(a3);
+
+        // method-4: 先 toString 转为字符串，然后 split(',') 转为数组，最后通过 map 将每个数据转换为 Number 类型
+        // + 符号代表强制转换数据类型，也可以其他办法如: Number(), parseInt() etc.
+        let a4 = TwoDimArray.toString().split(',').map(e => +e)
+    </script>
+</body>
+
+</html>
